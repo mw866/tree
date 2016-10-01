@@ -12,9 +12,10 @@ def tree(pathname, indention):
     print(indention+'├──', filename)
     if os.path.isdir(pathname):#if dir
         dirno+=1
-        for list_item in os.listdir(pathname):
+        lsitems = os.listdir(pathname)
+        for ls_item in os.listdir(pathname):
                 #print(os.path.join(pathname, list_item))
-                if not list_item.startswith('.'): tree(os.path.join(pathname, list_item),indention+"│  ")
+                if not ls_item.startswith('.'): tree(os.path.join(pathname, ls_item),indention+"│  ")
     else:#if file
         fileno+=1
 
@@ -25,4 +26,4 @@ if __name__ == '__main__':
             tree(input_path,'')
     else:
         tree(os.getcwd(),'')
-    print(dirno,' directories, ',fileno,' files')
+    print('\n',dirno,' directories, ',fileno,' files')
