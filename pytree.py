@@ -41,4 +41,5 @@ if __name__ == '__main__':
             init(input_path,'')
     else:
         init(os.getcwd(),'')
-    print('\n',dirno,' directories, ',fileno,' files')
+    print ('\n')
+    print(dirno,'directories,', fileno , 'files')
