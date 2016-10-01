@@ -9,15 +9,19 @@ fileno=0
 def tree(pathname, indention):
     global dirno, fileno
     dirname, filename = os.path.split(pathname)
-    print(indention+'├──', filename)
+    print(indention, filename)
     if os.path.isdir(pathname):#if dir
-        dirno+=1
-        lsitems = os.listdir(pathname)
-        for ls_item in os.listdir(pathname):
-                #print(os.path.join(pathname, list_item))
-                if not ls_item.startswith('.'): tree(os.path.join(pathname, ls_item),indention+"│  ")
+        dirno += 1
+        ls_items = os.listdir(pathname)
+        for ls_item in ls_items:
+            if not ls_item.startswith('.'):#if non-hidden
+                if ls_item == ls_items[-1]:
+                    new_indention = indention + '└──'
+                else:
+                    new_indention = indention + '├──'
+                tree(os.path.join(pathname, ls_item), new_indention)
     else:#if file
-        fileno+=1
+        fileno += 1
 
 if __name__ == '__main__':
     print('.')
