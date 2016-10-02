@@ -4,7 +4,7 @@ import sys
 import os
 import locale
 dirno = 0
-locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, 'en_US.utf8')
 fileno = 0
 
 
