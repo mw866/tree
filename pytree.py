@@ -4,7 +4,7 @@ import sys
 import os
 import locale
 dirno = 0
-locale.setlocale(locale.LC_ALL, 'en_US.utf8')
+locale.setlocale(locale.LC_ALL, '')
 fileno = 0
 
 
@@ -25,9 +25,10 @@ def tree(pathname, isLast_list):
     print(prefix, filename)
 
     if os.path.isdir(pathname):  # for dir
-        dirno += 1
-        ls_items = sorted(os.listdir(pathname), key=locale.strxfrm)
-        for ls_item in ls_items:
+      dirno += 1
+      ls_items = [ls_item for ls_item in sorted(os.listdir(pathname), key=locale.strxfrm) if not ls_item.startswith('.')]
+
+      for ls_item in ls_items:
             if not ls_item.startswith('.'):  # if non-hidden
                 if ls_item == ls_items[-1]:
                     tree(os.path.join(pathname, ls_item), isLast_list + [True])
@@ -36,8 +37,6 @@ def tree(pathname, isLast_list):
     else:  # for file
         fileno += 1
 
-
-#def clean(x): return x.startswith(',')==False
 
 def root(pathname, isLast_list):
     ls_items = [ls_item for ls_item in sorted(os.listdir(pathname), key=locale.strxfrm) if not ls_item.startswith('.')]
