@@ -25,7 +25,7 @@ def tree(pathname, isLast_list):
 
     if os.path.isdir(pathname):  # for dir
         dirno += 1
-        ls_items = sorted(os.listdir(pathname), key=str.upper)
+        ls_items = sorted(os.listdir(pathname), key=locale.strxfrm)
         for ls_item in ls_items:
             if not ls_item.startswith('.'):  # if non-hidden
                 if ls_item == ls_items[-1]:
@@ -37,7 +37,7 @@ def tree(pathname, isLast_list):
 
 
 def root(pathname, isLast_list):
-    ls_items = sorted(os.listdir(pathname),key=locale.strxfrm)
+    ls_items = sorted(os.listdir(pathname), key=locale.strxfrm)
     for ls_item in ls_items:
         if not ls_item.startswith('.'):  # if non-hidden
             if ls_item == ls_items[-1]:
