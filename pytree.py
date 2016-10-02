@@ -2,14 +2,16 @@
 import subprocess
 import sys
 import os
+import locale
 dirno = 0
 fileno = 0
+
 
 # YOUR CODE GOES here
 def tree(pathname, isLast_list):
     global dirno, fileno
     dirname, filename = os.path.split(pathname)
-    prefix= ''
+    prefix = ''
     for isLast in isLast_list[:-1]:
         if isLast:
             prefix += '    '
@@ -27,15 +29,15 @@ def tree(pathname, isLast_list):
         for ls_item in ls_items:
             if not ls_item.startswith('.'):  # if non-hidden
                 if ls_item == ls_items[-1]:
-                    tree(os.path.join(pathname, ls_item), isLast_list+[True])
+                    tree(os.path.join(pathname, ls_item), isLast_list + [True])
                 else:
-                    tree(os.path.join(pathname, ls_item), isLast_list+[False])
+                    tree(os.path.join(pathname, ls_item), isLast_list + [False])
     else:  # for file
         fileno += 1
 
 
 def root(pathname, isLast_list):
-    ls_items = sorted(os.listdir(pathname), key=str.upper)
+    ls_items = sorted(os.listdir(pathname),key=locale.strxfrm)
     for ls_item in ls_items:
         if not ls_item.startswith('.'):  # if non-hidden
             if ls_item == ls_items[-1]:
@@ -44,7 +46,7 @@ def root(pathname, isLast_list):
                 tree(os.path.join(pathname, ls_item), isLast_list + [False])
 
 if __name__ == '__main__':
-    if len(sys.argv)>= 2:
+    if len(sys.argv) >= 2:
         for input_path in sys.argv[1:]:
             print(input_path)
             root(input_path, [])
