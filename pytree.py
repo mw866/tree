@@ -14,7 +14,7 @@ def tree(pathname, isLast_list):
         if isLast==True:
             prefix += '    '
         else:
-            prefix += '│  '
+            prefix += '│   '
     if isLast_list[-1]==True:
         prefix += ('└──')
     else:
@@ -23,7 +23,7 @@ def tree(pathname, isLast_list):
 
     if os.path.isdir(pathname):  #for dir
         dirno += 1
-        ls_items = os.listdir(pathname)
+        ls_items = sorted(os.listdir(pathname))
         for ls_item in ls_items:
             if not ls_item.startswith('.'):  #if non-hidden
                 if ls_item == ls_items[-1]:
@@ -34,7 +34,7 @@ def tree(pathname, isLast_list):
         fileno += 1
 
 def root(pathname, isLast_list):
-    ls_items = os.listdir(pathname)
+    ls_items = sorted(os.listdir(pathname))
     for ls_item in ls_items:
         if not ls_item.startswith('.'):  #if non-hidden
             if ls_item == ls_items[-1]:
