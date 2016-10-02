@@ -43,11 +43,12 @@ def root(pathname, isLast_list):
                 tree(os.path.join(pathname, ls_item), isLast_list+[False])
 
 if __name__ == '__main__':
-    print('.')
     if len(sys.argv)>= 2:
         for input_path in sys.argv[1:]:
+            print('.', os.getcwd())
             root(input_path, [])
     else:
+        print('.')
         root(os.getcwd(), [])
     print('')
     print(dirno, 'directories,', fileno, 'files')
