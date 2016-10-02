@@ -37,10 +37,13 @@ def tree(pathname, isLast_list):
         fileno += 1
 
 
+#def clean(x): return x.startswith(',')==False
+
 def root(pathname, isLast_list):
-    ls_items = sorted(os.listdir(pathname), key=locale.strxfrm)
+    ls_items = [ls_item for ls_item in sorted(os.listdir(pathname), key=locale.strxfrm) if not ls_item.startswith('.')]
+
     for ls_item in ls_items:
-        if not ls_item.startswith('.'):  # if non-hidden
+        #if not ls_item.startswith('.'):  # if non-hidden
             if ls_item == ls_items[-1]:
                 tree(os.path.join(pathname, ls_item), isLast_list + [True])
             else:
