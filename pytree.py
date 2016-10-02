@@ -4,6 +4,7 @@ import sys
 import os
 import locale
 dirno = 0
+locale.setlocale(locale.LC_ALL, '')
 fileno = 0
 
 
