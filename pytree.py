@@ -45,7 +45,7 @@ def root(pathname, isLast_list):
 if __name__ == '__main__':
     if len(sys.argv)>= 2:
         for input_path in sys.argv[1:]:
-            print('.', os.getcwd())
+            print('.', input_path)
             root(input_path, [])
     else:
         print('.')
