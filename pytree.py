@@ -12,9 +12,9 @@ def tree(pathname, isLast_list):
     prefix= ''
     for isLast in isLast_list[:-1]:
         if isLast==True:
-            prefix += '   '#('└──')
+            prefix += '    '
         else:
-            prefix += '│  ' #('├──')
+            prefix += '│  '
     if isLast_list[-1]==True:
         prefix += ('└──')
     else:
@@ -33,28 +33,21 @@ def tree(pathname, isLast_list):
     else:  #for file
         fileno += 1
 
-# def init(pathname, isLast_list):
-    # ls_items = os.listdir(pathname)
-    # for ls_item in ls_items:
-    #         if not ls_item.startswith('.'):  #if non-hidden
-    #             if ls_item == ls_items[-1]:
-    #                 #new_isLast_list = isLast_list + ['└──']
-    #                 isLast = True
-    #             else:
-    #                 #new_isLast_list = isLast_list + ['├──']
-    #                 isLast = False
-    #             tree(os.path.join(pathname, ls_item), isLast_list, isLast)
-
-# def init_todelete(pathname, isLast_list):
-#     for root, dirs, files in os.walk(pathname):
-#             print(files)
+def root(pathname, isLast_list):
+    ls_items = os.listdir(pathname)
+    for ls_item in ls_items:
+        if not ls_item.startswith('.'):  #if non-hidden
+            if ls_item == ls_items[-1]:
+                tree(os.path.join(pathname, ls_item), isLast_list+[True])
+            else:
+                tree(os.path.join(pathname, ls_item), isLast_list+[False])
 
 if __name__ == '__main__':
     print('.')
     if len(sys.argv)>= 2:
         for input_path in sys.argv[1:]:
-            tree(input_path, [True, True])
+            root(input_path, [])
     else:
-        tree(os.getcwd(), [True, True])
-    print('\n')
+        root(os.getcwd(), [])
+    print('')
     print(dirno, 'directories,', fileno, 'files')
