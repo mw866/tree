@@ -25,7 +25,7 @@ def tree(pathname, isLast_list):
         dirno += 1
         ls_items = sorted(os.listdir(pathname))
         for ls_item in ls_items:
-            if(ls_item=='Icon\r'): ls_item = 'Icon' 
+            if(ls_item=='Icon\015'): ls_item = 'Icon'
             if not ls_item.startswith('.'):  #if non-hidden
                 if ls_item == ls_items[-1]:
                     tree(os.path.join(pathname, ls_item), isLast_list+[True])
